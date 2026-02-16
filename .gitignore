@@ -1,7 +1,22 @@
-venv/
-state/*.sqlite
-state/*.json
-state/agent_outputs/
-__pycache__/
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+.venv/
+
+# Local state / outputs
+state/
+*.sqlite
+*.db
+*.jsonl
+
+# Data (keep out of GitHub)
+data/logs_sample/
+data/gold/
+data/eval/
+*.csv
 
