@@ -1,22 +1,29 @@
-.DS_Store
-
 # Python
 __pycache__/
 *.pyc
-
-# Virtual env
-venv/
+*.pyo
+*.pyd
 .venv/
+venv/
+*.egg-info/
+dist/
+build/
 
 # Local state / outputs
 state/
 *.sqlite
 *.db
+*.duckdb
+*.parquet
 *.jsonl
 
-# Data (keep out of GitHub)
+# Data (DON'T COMMIT)
 data/logs_sample/
 data/gold/
 data/eval/
-*.csv
+data/**/*.csv
+data/**/*.log
+data/**/*.txt
 
+# OS
+.DS_Store
