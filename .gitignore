@@ -1,0 +1,7 @@
+venv/
+state/*.sqlite
+state/*.json
+state/agent_outputs/
+__pycache__/
+.DS_Store
+
