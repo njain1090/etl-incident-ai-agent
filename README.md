@@ -1,111 +1,110 @@
-ETL Incident Intelligence AI Agent
-Overview
+# ETL Incident Intelligence AI Agent
 
-Production-ready AI Agent for automated triage of SSIS ETL failures.
+Production-style AI agent for automated root cause analysis of ETL/SSIS pipeline failures.
 
-Designed to handle high-volume log ingestion (10k+ logs/day), classify incidents deterministically, enrich with LLM reasoning, and generate structured remediation outputs.
+## Overview
 
-Built using fully open-source stack.
+This project simulates an enterprise-grade incident intelligence platform that:
 
-Architecture
+- Parses ETL log files
+- Classifies failure types
+- Applies deterministic restart policies
+- Uses RAG (Retrieval Augmented Generation) for runbook-aware reasoning
+- Generates structured incident response outputs
+- Maintains signature store for deduplication
+- Produces operational dashboard metrics
 
-Logs → Gold Incident CSV → Stream Watcher →
-Signature Deduplication (SQLite) →
-Deterministic Policy Layer →
-RAG (Chroma Vector Store + Runbooks) →
-Ollama (Llama3 LLM) →
-Structured JSONL Output →
-Operational Dashboard (Failure Trends + Top Failures)
+Designed as a FAANG-level Data Engineering + AI system.
 
-Tech Stack
+---
 
-Python 3.12
+## Architecture
 
-Ollama (Llama3)
+logs → gold incident table → streaming watcher →  
+LLM + deterministic rules → signature store →  
+JSONL outputs + dashboard analytics
 
-LangChain (RAG orchestration)
+Core Components:
 
-ChromaDB (Vector store)
+- `incident_agent.py` → LLM + deterministic restart policy engine
+- `stream_watch.py` → production-style log watcher
+- `signature_store.py` → failure deduplication (SQLite)
+- `dashboard_queries.py` → operational metrics generation
+- `rag/build_vector_store.py` → embedding-based runbook retrieval
 
-SQLite (Signature store)
+---
 
-Pandas (data processing)
+## Features
 
-DuckDB (optional analytics layer)
+- Deterministic restart-safety enforcement
+- Failure signature deduplication
+- Vector-based historical context retrieval
+- Local LLM (Ollama + Llama3)
+- SQLite-backed signature intelligence
+- Failure trend analytics
+- Stream processing simulation
 
-All tools are free and open-source.
+---
 
-Key Capabilities
+## How to Run
 
-Deterministic restart safety enforcement
+### 1. Install dependencies
 
-Signature-based LLM deduplication
+pip install -r requirements.txt
 
-Idempotent stream processing
 
-Runbook-aware RAG context retrieval
+### 2. Build vector store
 
-Structured JSONL incident outputs
 
-Failure trend dashboards
-
-Production-safe local streaming mode
-
-Run Instructions
-Build Vector Store
 python rag/build_vector_store.py
 
-Run Batch Agent
+
+### 3. Run batch incident analysis
+
+
 python app/incident_agent.py
 
-Run Streaming Watcher
-python -m app.stream_watch
 
-One-Time Mode (Test)
-python -m app.stream_watch --once --max 10
+### 4. Run streaming watcher
 
-Outputs
 
-state/agent_outputs/*.jsonl → Structured incident decisions
+python -m app.stream_watch --once
 
-state/signatures.sqlite → Signature dedupe store
 
-state/dashboard_top_failures.csv
+### 5. Generate dashboard metrics
 
-state/dashboard_failure_trend.csv
 
-Example Output
-RootCause:
-Target object missing or permissions misconfigured.
+python app/dashboard_queries.py
 
-RestartSafe: NO (deterministic policy)
 
-NextActions:
-- Verify schema
-- Validate execution account permissions
+---
 
-Escalation: MED (DBA)
+## Resume-Ready Impact
 
-Design Principles
+- Reduced manual triage time by automating ETL root cause classification
+- Implemented deterministic restart-safety enforcement policies
+- Designed signature-based failure deduplication system
+- Built RAG-enabled runbook intelligence layer
+- Created operational analytics dashboards for failure trends
+- Simulated production-grade streaming incident watcher
 
-LLM never overrides deterministic restart policy
+---
 
-High-risk failure families hard-coded
+## Technologies
 
-Signature caching reduces token usage
+Python  
+LangChain  
+Ollama (Llama3)  
+ChromaDB  
+SQLite  
+RAG Architecture  
+Vector Embeddings  
+ETL Observability  
+Failure Signature Modeling  
 
-Structured outputs for downstream integration
+---
 
-Stream-safe processing (no reprocessing duplicates)
+## Disclaimer
 
-Future Enhancements
-
-Kafka ingestion
-
-Web dashboard (Streamlit)
-
-Slack/PagerDuty integration
-
-Confidence scoring
-
-Drift detection on error signatures
+All logs and data in this repository are synthetic or anonymized.
+No production or proprietary data is included.
